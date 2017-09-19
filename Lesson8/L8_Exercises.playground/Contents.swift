@@ -19,7 +19,7 @@ enum Level {
     case high
 }
 
-class Teenager {
+class Teenager: Babysitter {
     var age: Int
     let responsible: Bool
     let patience: Level
@@ -29,6 +29,16 @@ class Teenager {
         self.responsible = responsible
         self.patience = patience
     }
+  
+  func playCandyland(_ numberOfTimes: Int) {
+    for i in 1...numberOfTimes {
+      print("test")
+    }
+  }
+  
+  func read(_ book: String, firstLine: String, asleep: Bool) -> Bool {
+    return false
+  }
 }
 
 protocol Babysitter {
@@ -36,7 +46,8 @@ protocol Babysitter {
     func read(_ book: String, firstLine: String, asleep: Bool) -> Bool
 }
 
-
+var teen = Teenager(age: 15, responsible: false, patience: .medium)
+teen.playCandyland(12)
 //: __Problem 2__
 //:
 //:Below find the class Animal along with the Adorable protocol.
@@ -59,7 +70,11 @@ protocol Adorable {
 
 var cuteMouse = UIImage(named: "mouseBall")
 
-class Animal { 
+class Animal: Adorable {
+  
+  var size = Size.tiny
+  var softFur = false
+  
     let species: String
     let numberOfLegs: Int
     
@@ -67,9 +82,20 @@ class Animal {
         self.species = species
         self.numberOfLegs = numberOfLegs
     }
+  
+  func frolick() {
+    print("frolick")
+  }
+  
+  func curlIntoSmallBall() {
+    print("curlIntoSmallBall")
+  }
 }
 var pic = UIImage(named: "frolick.jpg")
 
+var animal = Animal(species: "dog", numberOfLegs: 4)
+animal.frolick()
+animal.curlIntoSmallBall()
 //: __Problem 3__
 //:
 //: Below you'll find the Friend class. The Friend class has implemented the Mover protocol, but the Mover protocol was accidentally deleted.
@@ -79,7 +105,7 @@ var pic = UIImage(named: "frolick.jpg")
 //:
 //: __3b.__ Edit the Friend class so that it adopts the Mover protocol.
 
-class Friend {
+class Friend: Mover {
     var reliability: Int
     var likesYou: Bool
     
@@ -109,6 +135,15 @@ class Friend {
         isEmpty = false
         return isEmpty
     }
+}
+
+protocol Mover {
+  var willWorkForPizzaAndBeer: Bool { get }
+  
+  func goHiking() -> String
+  func comeOverForDinner() -> String
+  func carryCouch() -> String
+  func loadVan(_ empty: Bool) -> Bool
 }
 
 //: Problem 4
@@ -147,7 +182,7 @@ class Squirrel: Hoarder {
     
 }
 
-class ScrubJay {
+class ScrubJay: Hoarder {
     let wings = 2
     let female: Bool
     
@@ -158,8 +193,20 @@ class ScrubJay {
     func fly() -> String {
         return "Swoop!"
     }
+  
+  func cache(_ foodItem: String) -> String {
+    return foodItem
+  }
+  
+  func pilfer() -> String {
+    return "pilfer"
+  }
 }
 
+var sj = ScrubJay(female: false)
+sj.fly()
+sj.cache("myString")
+sj.pilfer()
 //: __Problem 5__
 //:
 //: Extensions can be used to adhere to protocols. In the example below, the Roommate class adopts and adheres to the Souschef protocol by way of an extension. Add an extension to the Minion class so that Minion adopts the DirtyDeeds protocol.
@@ -204,6 +251,20 @@ class Minion {
     }
 }
 
+extension Minion: DirtyDeeds  {
+  func cheat() {
+    print("cheat")
+  }
+  
+  func steal() {
+    print("steal")
+  }
+}
+
+
+var m = Minion(name: "Minime")
+m.cheat()
+m.steal()
 //: __Problem 6__
 //:
 //: This extension from the [Coding Explorer Blog](http://www.codingexplorer.com/swift-extensions/) makes it easier to initialize a UIColor object from RGB values that are integers.
@@ -223,9 +284,14 @@ extension UIColor
         
         self.init(red: newRed, green: newGreen, blue: newBlue, alpha: CGFloat(1.0))
     }
+  
+  class func pistachio() -> UIColor {
+    return UIColor(redValue: 147, greenValue: 197, blueValue: 114)
+  }
 }
 
-
+var c = UIColor()
+UIColor.pistachio()
 
 
 

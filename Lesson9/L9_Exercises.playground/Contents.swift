@@ -15,11 +15,17 @@ let orderedSurnames = surnames.sorted(by: {(name1: String, name2: String) -> Boo
     return name2 > name1
 })
 
+let reversed = surnames.sorted(by: { $0 > $1 })
+print(reversed)
+
 // 2
 let battingAverages = [0.302, 0.556, 0.280, 0.500, 0.281, 0.285]
 let sortedAverages = battingAverages.sorted(by: {(average1: Double, average2: Double) -> Bool in
     return average2 > average1
 })
+
+let reversedAvg = battingAverages.sorted(by: {$0 > $1})
+print(reversedAvg)
 
 //: __Problem 3__
 //:
